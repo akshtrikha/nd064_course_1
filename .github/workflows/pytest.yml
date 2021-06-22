@@ -13,10 +13,11 @@ jobs:
     ## Configure the operating system the workflow should run on.
     ## In this case, the job on Ubuntu. Additionally, set a the job
     ## to execute on different Python versions 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.operating-system }}
     strategy:
       matrix:
         python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
+        operating-system: [ubuntu-latest, windows-latest, macOS-latest]
     ## Define a sequence of steps to be executed
     steps:
       ## Use the public `checkout` action  in version v2  
@@ -35,7 +36,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install  pytest 
+        pip install pytest 
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     ## Run all pytests by inovking the `pytest command`
     - name: Test with pytest
