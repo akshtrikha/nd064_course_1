@@ -13,11 +13,11 @@ jobs:
     ## Configure the operating system the workflow should run on.
     ## In this case, the job on Ubuntu. Additionally, set a the job
     ## to execute on different Python versions 
-    runs-on: ${{ matrix.operating-system }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
-        operating-system: [ubuntu-latest, windows-latest, macOS-latest]
+        
     ## Define a sequence of steps to be executed
     steps:
       ## Use the public `checkout` action  in version v2  
